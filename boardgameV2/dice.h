@@ -15,3 +15,8 @@ public:
 
 #endif // DICE_H
 
+//How to call function
+    //Dice roll = Dice();
+    //int ans = roll.roll_dice();
+//Check
+    //std::cout << "result is " <<ans<<std::endl;
