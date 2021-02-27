@@ -13,7 +13,7 @@ void Bad_luck(int chance_bad)
     else if(chance_bad==2) cout<<"Forget your suitcase at the airport. (Go to the Airport)";
     else if(chance_bad==3) cout<<"Lost money to other player (-300 THB)";
     else if(chance_bad==4) cout<<"Stop walking";
-    else cout<<"Bankrupt!!!";
+    else if(chance_bad==5) cout<<"Bankrupt!!!";
 }
 void Good_luck(int chance_good)
 {
@@ -22,7 +22,7 @@ void Good_luck(int chance_good)
     else if(chance_good==2) cout<<"Go to Start point (+500 THB)";
     else if(chance_good==3) cout<<"Get money (+1000 THB)";
     else if(chance_good==4) cout<<"Win a lottery (+500 THB)";
-    else cout<<"Collect money (+100 THB)";
+    else if(chance_good==5) cout<<"Collect money (+100 THB)";
 }
 
 void random_chance()
