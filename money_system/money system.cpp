@@ -22,11 +22,44 @@ int bonus()
     return Bonus[i];
 }
 
+void Bad_luck(int chance_bad)
+{
+    chance_bad = rand()%5+1;
+    if(chance_bad==1)  cout<<"Lost money (500 THB)";
+    else if(chance_bad==2) cout<<"Forget your suitcase at the airport. (Go to the Airport)";
+    else if(chance_bad==3) cout<<"Lost money to other player (-300 THB)";
+    else if(chance_bad==4) cout<<"Stop walking";
+    else if(chance_bad==5) cout<<"Bankrupt!!!";
+}
+void Good_luck(int chance_good)
+{
+    chance_good = rand()%5+1;
+    if(chance_good==1)  cout<<"Get money from other player";
+    else if(chance_good==2) cout<<"Go to Start point (+500 THB)";
+    else if(chance_good==3) cout<<"Get money (+1000 THB)";
+    else if(chance_good==4) cout<<"Win a lottery (+500 THB)";
+    else if(chance_good==5) cout<<"Collect money (+100 THB)";
+}
+
+void random_chance()
+{
+    int chance;
+    chance = rand()%2+1;
+    switch(chance)
+    {
+        case 1 :
+            Bad_luck();
+        case 2 :
+            Good_luck();
+    }
+}
+
+int asset = 0,money_p1=1000,asset_p2 = 0,money_p2=1000;
+bool buy,buy2; 
+
 int money_system_p1()
-{    
-    int asset = 0,money_p1=1000;
-    bool buy; 
-    if(pos.p1 == 1) // Thailand
+{     
+    if(pos.p1 == 2) // Thailand
     {
         if(buy == 1)
         {
@@ -47,8 +80,7 @@ int money_system_p1()
             }
         }  
     }
-
-    if(pos.p1 == 2) // Myanmar
+    if(pos.p1 == 3) // Myanmar
     {
         if(buy == 1)
         {
@@ -69,7 +101,7 @@ int money_system_p1()
             }
         }  
     }
-    if(pos.p1 == 3) // Vietnam
+    if(pos.p1 == 4) // Vietnam
     {
         if(buy == 1)
         {
@@ -89,6 +121,44 @@ int money_system_p1()
                 money_p1 = money_p1-C.VT[2];
             }
         }    
+    }
+    if(pos.p1 == 5) //Chance
+    {
+        random_chance()
+        if(random_chance == Good_luck(1))
+        {
+            money_p1 = money_p1+300;
+            money_p2 = money_p2-300;
+        }
+        else if(random_chance == Good_luck(2))
+        {
+            money_p1 = money_p1+500;
+        }
+        else if(random_chance == Good_luck(3))
+        {
+            money_p1 = money_p1+1000;
+        }
+        else if(random_chance == Good_luck(4))
+        {
+            money_p1 = money_p1+500;
+        }
+        else if(random_chance == Good_luck(5))
+        {
+            money_p1 = money_p1+100;
+        }
+        else if(random_chance == Bad_luck(1))
+        {
+            money_p1 = money_p1-500;
+        }
+        else if(random_chance == Bad_luck(3))
+        {
+            money_p1 = money_p1-300;
+            money_p2 = money_p2+300;
+        }
+        else if(random_chance == Bad_luck(5))
+        {
+            money_p1 = money_p1-money_p1;
+        }
     }
     if(pos.p1 == 6) // Taiwan
     {
@@ -132,9 +202,44 @@ int money_system_p1()
             }
         }   
     }
-    if(pos.p1 == 9) //TAX
+    if(pos.p1 == 9) money_p1 = money_p1-C.TAX[0];//TAX
+    if(pos.p1 == 10) //Chance
     {
-        money_p1 = money_p1-C.TAX[0];
+        random_chance()
+        if(random_chance == Good_luck(1))
+        {
+            money_p1 = money_p1+300;
+            money_p2 = money_p2-300;
+        }
+        else if(random_chance == Good_luck(2))
+        {
+            money_p1 = money_p1+500;
+        }
+        else if(random_chance == Good_luck(3))
+        {
+            money_p1 = money_p1+1000;
+        }
+        else if(random_chance == Good_luck(4))
+        {
+            money_p1 = money_p1+500;
+        }
+        else if(random_chance == Good_luck(5))
+        {
+            money_p1 = money_p1+100;
+        }
+        else if(random_chance == Bad_luck(1))
+        {
+            money_p1 = money_p1-500;
+        }
+        else if(random_chance == Bad_luck(3))
+        {
+            money_p1 = money_p1-300;
+            money_p2 = money_p2+300;
+        }
+        else if(random_chance == Bad_luck(5))
+        {
+            money_p1 = money_p1-money_p1;
+        }
     }
     if(pos.p1 == 11) // Japan
     {
@@ -178,14 +283,8 @@ int money_system_p1()
             }
         }
     }
-    if(pos.p1 == 13)
-    {
-        money_p1 = money_p1+bonus();
-    }
-    if(pos.p1 == 14) //Tax
-    {
-        money_p1 = money_p1-C.TAX[1];
-    }
+    if(pos.p1 == 13) money_p1 = money_p1+bonus();//Bonus
+    if(pos.p1 == 14) money_p1 = money_p1-C.TAX[1];//Tax
     if(pos.p1 == 15) // China
     {
         if(buy == 1)
@@ -226,6 +325,44 @@ int money_system_p1()
                 asset = asset+C.BZ[2];
                 money_p1 = money_p1-C.BZ[2];
             }
+        }
+    }
+    if(pos.p1 == 17) //Chance
+    {
+        random_chance()
+        if(random_chance == Good_luck(1))
+        {
+            money_p1 = money_p1+300;
+            money_p2 = money_p2-300;
+        }
+        else if(random_chance == Good_luck(2))
+        {
+            money_p1 = money_p1+500;
+        }
+        else if(random_chance == Good_luck(3))
+        {
+            money_p1 = money_p1+1000;
+        }
+        else if(random_chance == Good_luck(4))
+        {
+            money_p1 = money_p1+500;
+        }
+        else if(random_chance == Good_luck(5))
+        {
+            money_p1 = money_p1+100;
+        }
+        else if(random_chance == Bad_luck(1))
+        {
+            money_p1 = money_p1-500;
+        }
+        else if(random_chance == Bad_luck(3))
+        {
+            money_p1 = money_p1-300;
+            money_p2 = money_p2+300;
+        }
+        else if(random_chance == Bad_luck(5))
+        {
+            money_p1 = money_p1-money_p1;
         }
     }
     if(pos.p1 == 18) // France
@@ -291,10 +428,7 @@ int money_system_p1()
             }
         }
     }
-    if(pos.p1 == 22) //Supertax
-    {
-        money_p1=money_p1-C.TAX[2];
-    }
+    if(pos.p1 == 22) money_p1=money_p1-C.TAX[2];//Supertax
     if(pos.p1 == 23) // England
     {
         if(buy == 1)
@@ -316,15 +450,50 @@ int money_system_p1()
             }
         }
     }
-
+    if(pos.p1 == 24) //Chance
+    {
+        random_chance()
+        if(random_chance == Good_luck(1))
+        {
+            money_p1 = money_p1+300;
+            money_p2 = money_p2-300;
+        }
+        else if(random_chance == Good_luck(2))
+        {
+            money_p1 = money_p1+500;
+        }
+        else if(random_chance == Good_luck(3))
+        {
+            money_p1 = money_p1+1000;
+        }
+        else if(random_chance == Good_luck(4))
+        {
+            money_p1 = money_p1+500;
+        }
+        else if(random_chance == Good_luck(5))
+        {
+            money_p1 = money_p1+100;
+        }
+        else if(random_chance == Bad_luck(1))
+        {
+            money_p1 = money_p1-500;
+        }
+        else if(random_chance == Bad_luck(3))
+        {
+            money_p1 = money_p1-300;
+            money_p2 = money_p2+300;
+        }
+        else if(random_chance == Bad_luck(5))
+        {
+            money_p1 = money_p1-money_p1;
+        }
+    }
 }
 int money_system_p2()
 {    
-    int asset_p2 = 0,money_p2=1000;
-    bool buy; 
-    if(pos.p2 == 1) // Thailand
+    if(pos.p2 == 2) // Thailand
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -343,10 +512,9 @@ int money_system_p2()
             }
         }  
     }
-
-    if(pos.p2 == 2) // Myanmar
+    if(pos.p2 == 3) // Myanmar
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -365,9 +533,9 @@ int money_system_p2()
             }
         }  
     }
-    if(pos.p2 == 3) // Vietnam
+    if(pos.p2 == 4) // Vietnam
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -386,22 +554,47 @@ int money_system_p2()
             }
         }    
     }
-    if(pos.p2 == 5)
+    if(pos.p2 == 5) //Chance
     {
         random_chance()
-        if(random_chance == Good_luck(2))
+        if(random_chance == Good_luck(1))
         {
-
+            money_p2 = money_p2+300;
+            money_p1 = money_p1-300;
+        }
+        else if(random_chance == Good_luck(2))
+        {
+            money_p2 = money_p2+500;
         }
         else if(random_chance == Good_luck(3))
         {
-
+            money_p2 = money_p2+1000;
         }
-        else if(random_chance == )
+        else if(random_chance == Good_luck(4))
+        {
+            money_p2 = money_p2+500;
+        }
+        else if(random_chance == Good_luck(5))
+        {
+            money_p2 = money_p2+100;
+        }
+        else if(random_chance == Bad_luck(1))
+        {
+            money_p2 = money_p2-500;
+        }
+        else if(random_chance == Bad_luck(3))
+        {
+            money_p2 = money_p2-300;
+            money_p1 = money_p1+300;
+        }
+        else if(random_chance == Bad_luck(5))
+        {
+            money_p2 = money_p2-money_p2;
+        }
     }
     if(pos.p2 == 6) // Taiwan
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -422,7 +615,7 @@ int money_system_p2()
     }
     if(pos.p2 == 8) // Bhutan
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -441,13 +634,48 @@ int money_system_p2()
             }
         }   
     }
-    if(pos.p2 == 9) //TAX
+    if(pos.p2 == 9) money_p2 = money_p2-C.TAX[0];//TAX
+    if(pos.p2 == 10) //Chance
     {
-        money_p2 = money_p2-C.TAX[0];
+        random_chance()
+        if(random_chance == Good_luck(1))
+        {
+            money_p2 = money_p2+300;
+            money_p1 = money_p1-300;
+        }
+        else if(random_chance == Good_luck(2))
+        {
+            money_p2 = money_p2+500;
+        }
+        else if(random_chance == Good_luck(3))
+        {
+            money_p2 = money_p2+1000;
+        }
+        else if(random_chance == Good_luck(4))
+        {
+            money_p2 = money_p2+500;
+        }
+        else if(random_chance == Good_luck(5))
+        {
+            money_p2 = money_p2+100;
+        }
+        else if(random_chance == Bad_luck(1))
+        {
+            money_p2 = money_p2-500;
+        }
+        else if(random_chance == Bad_luck(3))
+        {
+            money_p2 = money_p2-300;
+            money_p1 = money_p1+300;
+        }
+        else if(random_chance == Bad_luck(5))
+        {
+            money_p2 = money_p2-money_p2;
+        }
     }
     if(pos.p2 == 11) // Japan
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -468,7 +696,7 @@ int money_system_p2()
     }
     if(pos.p2 == 12) // Korea
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -487,17 +715,11 @@ int money_system_p2()
             }
         }
     }
-    if(pos.p2 == 13)
-    {
-        money_p2 = money_p2+bonus();
-    }
-    if(pos.p2 == 14) //Tax
-    {
-        money_p2 = money_p2-C.TAX[1];
-    }
+    if(pos.p2 == 13) money_p2 = money_p2+bonus();//Bonus
+    if(pos.p2 == 14) money_p2 = money_p2-C.TAX[1];//Tax
     if(pos.p2 == 15) // China
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -518,7 +740,7 @@ int money_system_p2()
     }
     if(pos.p2 == 16) // Brazil
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -537,9 +759,47 @@ int money_system_p2()
             }
         }
     }
+    if(pos.p2 == 17) //Chance
+    {
+        random_chance()
+        if(random_chance == Good_luck(1))
+        {
+            money_p2 = money_p2+300;
+            money_p1 = money_p1-300;
+        }
+        else if(random_chance == Good_luck(2))
+        {
+            money_p2 = money_p2+500;
+        }
+        else if(random_chance == Good_luck(3))
+        {
+            money_p2 = money_p2+1000;
+        }
+        else if(random_chance == Good_luck(4))
+        {
+            money_p2 = money_p2+500;
+        }
+        else if(random_chance == Good_luck(5))
+        {
+            money_p2 = money_p2+100;
+        }
+        else if(random_chance == Bad_luck(1))
+        {
+            money_p2 = money_p2-500;
+        }
+        else if(random_chance == Bad_luck(3))
+        {
+            money_p2 = money_p2-300;
+            money_p1 = money_p1+300;
+        }
+        else if(random_chance == Bad_luck(5))
+        {
+            money_p2 = money_p2-money_p2;
+        }
+    }
     if(pos.p2 == 18) // France
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -560,7 +820,7 @@ int money_system_p2()
     }
     if(pos.p2 == 20) // USA
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -581,7 +841,7 @@ int money_system_p2()
     }
     if(pos.p2 == 21) // USA
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -600,13 +860,10 @@ int money_system_p2()
             }
         }
     }
-    if(pos.p2 == 22) //Supertax
-    {
-        money_p2=money_p2-C.TAX[2];
-    }
+    if(pos.p2 == 22) money_p2=money_p2-C.TAX[2];//Supertax
     if(pos.p2 == 23) // England
     {
-        if(buy == 1)
+        if(buy2 == 1)
         {
             if(round.pos.p2 == 1)
             {
@@ -623,6 +880,44 @@ int money_system_p2()
                 asset_p2 = asset_p2+C.EN[2];
                 money_p2 = money_p2-C.EN[2];
             }
+        }
+    }
+    if(pos.p2 == 24) //Chance
+    {
+        random_chance()
+        if(random_chance == Good_luck(1))
+        {
+            money_p2 = money_p2+300;
+            money_p1 = money_p1-300;
+        }
+        else if(random_chance == Good_luck(2))
+        {
+            money_p2 = money_p2+500;
+        }
+        else if(random_chance == Good_luck(3))
+        {
+            money_p2 = money_p2+1000;
+        }
+        else if(random_chance == Good_luck(4))
+        {
+            money_p2 = money_p2+500;
+        }
+        else if(random_chance == Good_luck(5))
+        {
+            money_p2 = money_p2+100;
+        }
+        else if(random_chance == Bad_luck(1))
+        {
+            money_p2 = money_p2-500;
+        }
+        else if(random_chance == Bad_luck(3))
+        {
+            money_p2 = money_p2-300;
+            money_p1 = money_p1+300;
+        }
+        else if(random_chance == Bad_luck(5))
+        {
+            money_p2 = money_p2-money_p2;
         }
     }
 }
