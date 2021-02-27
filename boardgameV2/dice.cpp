@@ -1,16 +1,13 @@
 #include "dice.h"
-#include<iostream>
+#include "bordgame.h"
 #include<cstdlib>
 #include<ctime>
-using namespace std;
+#include<iostream>
+Dice::Dice(){}
+Dice::~Dice(){}
 
-
-Dice::Dice(){
-    side =6;
-}
-
-int Dice::rollDice(){
-    int roll=0;
-    roll =rand()%side +1;
-    return roll;
+int Dice::roll_dice(){
+    srand(time(0));
+    dice = rand() % 6 + 1;
+    return dice;
 }
