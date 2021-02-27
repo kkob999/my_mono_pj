@@ -4,9 +4,9 @@
 
 using namespace std;
 
-int chance,chance_bad,chance_good;
+int chance;
 
-void Bad_luck()
+void Bad_luck(int chance_bad)
 {
     chance_bad = rand()%5+1;
     if(chance_bad==1)  cout<<"Lost money (500 THB)";
@@ -15,7 +15,7 @@ void Bad_luck()
     else if(chance_bad==4) cout<<"Stop walking";
     else cout<<"Bankrupt!!!";
 }
-void Good_luck()
+void Good_luck(int chance_good)
 {
     chance_good = rand()%5+1;
     if(chance_good==1)  cout<<"Get money from other player";
