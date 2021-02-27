@@ -18,5 +18,5 @@ public:
 //How to call function
     //Dice roll = Dice();
     //int ans = roll.roll_dice();
-//Check
+//Check in main.cpp
     //std::cout << "result is " <<ans<<std::endl;
