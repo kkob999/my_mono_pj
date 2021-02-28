@@ -14,6 +14,8 @@ class main3 : public QDialog
 public:
     explicit main3(QWidget *parent = nullptr);
     ~main3();
+    int randomDice();
+    int show_space(int num_sp);
     
 
 private slots:
@@ -22,6 +24,7 @@ private slots:
 
 private:
     Ui::main3 *ui;
+    Space *space;
 };
 
 #endif // MAIN3_H
